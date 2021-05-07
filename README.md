@@ -7,15 +7,15 @@ Whack-A-Mole is a popular arcade game. In Japan, モグラ退治 (mogura taiji, 
 
 # How to play 
 
-Mole will appear at random
-Using Mouse to control hammer
-Hit the Mole to score point
-Score as much points as possible
+- Mole will appear at random
+- Using Mouse to control hammer
+- Hit the Mole to score point
+- Score as much points as possible
 
 # Tech Stack
 
-HTML
-CSS
-JavaScript
+- HTML
+- CSS
+- JavaScript
 
 
