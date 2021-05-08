@@ -23,11 +23,11 @@ body.appendChild(score)
 score.setAttribute('class', 'score')
 
 //Creating a countdown element
-// const countDown = document.createElement('h3')
-// countDown.innerText = '15s'
-// body.appendChild(countDown)
-// countDown.setAttribute('class', 'countDown')
-
+const countDown = document.createElement('h3')
+// countDown.innerText = 15
+body.appendChild(countDown)
+countDown.setAttribute('class', 'countDown')
+     
 
 //Creating a table element
 const table = document.createElement('table')
@@ -68,27 +68,31 @@ for (let i = 1; i <= rows; i++) {
 //Condition to ensure that mole does not appear on the same col
 // Creating a previous position variable for mole to get the data
 
-const molePreviousPos = {row:0, col:0}
-const moleCurrentPos = {row:0 , col:0} 
+const molePreviousPos = {row:null, col:null}
+const moleCurrentPos = {row:null , col:null} 
 const moleAppear = () => {
 
-     let randomRow = Math.ceil(Math.random() * rows)
-     let randomCols = Math.ceil(Math.random() * cols)
+     let randomRow;
+     let randomCols;
+     do {randomRow = Math.ceil(Math.random() * rows)
+     randomCols = Math.ceil(Math.random() * cols)}
 
-     while (moleCurrentPos.row === randomRow && moleCurrentPos.col === randomCols) {
-          randomRow = Math.ceil(Math.random() * rows)
-          randomCols = Math.ceil(Math.random() * cols)
-     }
+     while (moleCurrentPos.row === randomRow  && moleCurrentPos.col === randomCols);
 
+     
+     
+     //Save previous location to remove mole class
      molePreviousPos.row = moleCurrentPos.row
      molePreviousPos.col = moleCurrentPos.col
      moleCurrentPos.row = randomRow; moleCurrentPos.col = randomCols 
 
      //Callback function of moleOut to invoke the moleOut function
      //After the mole goes to next column, removeMole function will be invoked to remove the mole class from the previous column
+     //To check if mole previous position is not null as null is the initial start of the game
      moleOut(moleCurrentPos.row, moleCurrentPos.col) 
+     if(molePreviousPos.row !== null && molePreviousPos.col !== null){
      removeMole(molePreviousPos.row, molePreviousPos.col)
-}
+}}
 
 console.log(moleCurrentPos)
 
@@ -104,6 +108,7 @@ function moleOut (row, col) {
 //Creating a removeMole function to ensure mole class is removed before the mole appear in the next column 
 function removeMole (row, col) {
 
+   
      const mole = document.getElementById(`r${row}c${col}`)
      mole.removeAttribute('class', 'mole')
 
@@ -117,14 +122,27 @@ function updateScore () {
      
 }
 
-
 //Creating timeout for mole appear = 1 sec
+let i = 15;
 document.querySelector('button').onclick = function(){
-setInterval(function() {
-     moleAppear() 
+let a = setInterval(function() {
+document.querySelector('.countDown').textContent = `${i}`;
+i--;
+
+
+if(i<0) {
+         clearInterval(a);
+         alert('GAME OVER! Your final score is ' + currentScore)
+     location.reload()
      }
+
+       
+   moleAppear() 
+    }
 , 1000);
 }
+
+
 
 //Creating an Event Listener to capture the mole everytime a mouse event is clicked at the mole
 document.addEventListener('click', function (e){
@@ -135,13 +153,6 @@ currentScore ++
 
     updateScore()
 })
-
-
-
-
-
-
-
 
 
 

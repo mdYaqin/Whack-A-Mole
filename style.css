@@ -12,12 +12,19 @@ body {
 }
 
 
+
 h1, h2 {
-     font-size: 60px;
+     font-size: 50px;
      text-align: center;
-     font-family: arial;
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
      margin: 8px;
      
+   }
+
+   h3 {
+        font-size: 40px;
+        text-align: center;
+        margin: 0;
    }
    
    button {
@@ -53,7 +60,7 @@ h1, h2 {
 
 
 .column {
-     background-image: url(image/tanah.png);
+     background-image: url(./Image/tanah.png);
      background-size: contain;
      background-repeat: no-repeat;
      background-position: center bottom;
@@ -67,7 +74,7 @@ h1, h2 {
 
 
 .mole {
-     background-image: url(image/tikus.png);
+     background-image: url(./Image/tikus.png);
      background-size: 60%;
      background-repeat: no-repeat;
      background-position: center;
